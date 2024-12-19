@@ -1,7 +1,7 @@
 # Multi-Agent Data Analysis System
 
 ## Overview
-This project implements an automated data analysis system using multiple specialized agents powered by GPT-4. The system can download datasets from Hugging Face, perform comprehensive data analysis, and generate detailed reports automatically.
+This project implements an automated data analysis system using multiple specialized agents. The system can download datasets from Hugging Face, perform comprehensive data analysis, and generate detailed reports automatically.
 
 ## Features
 - Automated dataset download from Hugging Face repositories
