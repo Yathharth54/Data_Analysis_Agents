@@ -41,5 +41,5 @@ def process_dataset(url: str):
     )
 
 if __name__ == "_main_":
-    dataset_url = "https://huggingface.co/datasets/positivethoughts/rewrite_10k"
+    dataset_url = "https://huggingface.co/datasets/scikit-learn/iris"
     process_dataset(dataset_url)
