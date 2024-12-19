@@ -1,158 +1,139 @@
-# Automated Data Analysis Pipeline
+# Multi-Agent Data Analysis System
 
-This project implements an automated data analysis pipeline using Microsoft's AutoGen framework. It orchestrates multiple AI agents to perform comprehensive data analysis, visualization, and report generation.
+## Overview
+This project implements an automated data analysis system using multiple specialized agents powered by GPT-4. The system can download datasets from Hugging Face, perform comprehensive data analysis, and generate detailed reports automatically.
 
 ## Features
-
-- Automated dataset download from Hugging Face
-- Multi-agent architecture for specialized tasks:
-  - Data source management
-  - Data quality assessment
-  - Statistical analysis
-  - Qualitative analysis
-  - Data visualization
-  - PDF report generation
-- Quality scoring system for data assessment
+- Automated dataset download from Hugging Face repositories
+- Comprehensive data quality assessment
+- Statistical and qualitative analysis
 - Automated visualization generation
-- Comprehensive PDF report generation
+- PDF report generation
+- Multi-agent architecture for specialized tasks
 
-## Prerequisites
-
-- Python 3.8+
-- Git LFS (for downloading large datasets)
+## System Requirements
+- Python 3.x
+- Git LFS (for downloading datasets)
 - Required Python packages:
-  ```
-  autogen
-  pandas
-  numpy
-  matplotlib
-  seaborn
-  fpdf
-  ```
+  - autogen
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - fpdf
 
-## Installation
+## Project Structure
+```
+├── agents.py           # Agent definitions and initialization
+├── config.py          # Configuration settings
+├── main.py            # Main application entry point
+├── system_messages.py # Agent system messages/instructions
+└── utils.py           # Utility functions for data processing
+```
+
+## Agent Roles
+1. **Data Source Manager**: Handles dataset downloading and file management
+2. **Data Quality Agent**: Assesses dataset quality and completeness
+3. **Statistical Analysis Agent**: Performs numerical analysis and statistics
+4. **Qualitative Analysis Agent**: Analyzes data structure and patterns
+5. **Visualization Agent**: Creates data visualizations
+6. **Report Generation Agent**: Compiles findings into PDF reports
+
+## Setup Instructions
 
 1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd [repository-name]
-   ```
+```bash
+git clone [repository-url]
+cd [repository-name]
+```
 
 2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install autogen pandas numpy matplotlib seaborn fpdf
+```
 
-3. Configure API key:
-   - Replace the API key in the `llm_config` dictionary with your own key
+3. Configure the API key:
+   - Open `config.py`
+   - Replace `"ENTER YOUR API KEY"` with your actual API key
 
 ## Usage
 
 1. Basic usage:
-   ```python
-   from safe1 import process_dataset
-   
-   dataset_url = "https://huggingface.co/datasets/your-dataset"
-   process_dataset(dataset_url)
-   ```
+```python
+from main import process_dataset
 
-2. The pipeline will automatically:
-   - Download the dataset
-   - Assess data quality
-   - Perform statistical analysis
-   - Generate visualizations
-   - Create a comprehensive PDF report
+# Process a dataset from Hugging Face
+process_dataset("https://huggingface.co/datasets/scikit-learn/iris")
+```
 
-## Project Structure
+2. Output structure:
+```
+datasets/
+├── quality_assessment/
+│   └── quality_assessment.txt
+├── insights/
+│   └── insights.txt
+├── visualizations/
+│   ├── correlation_heatmap.png
+│   └── feature_distributions.png
+└── output/
+    └── analysis_report.pdf
+```
 
-- `safe1.py`: Main script containing all agent definitions and functions
-- Generated directories:
-  - `datasets/`: Downloaded dataset files
-  - `quality_assessment/`: Data quality reports
-  - `insights/`: Statistical and qualitative analysis results
-  - `visualizations/`: Generated plots and charts
-  - `output/`: Final PDF reports
+## Key Components
 
-## Agent Descriptions
+### agents.py
+- Defines and initializes all agent types
+- Configures agent behaviors and capabilities
+- Registers execution functions for each agent
 
-1. **Data Source Manager**
-   - Handles dataset downloading and file management
-   - Uses Git LFS for large file handling
+### config.py
+- Contains LLM configuration
+- API key settings
+- Model specifications
 
-2. **Data Quality Assessment Agent**
-   - Evaluates data completeness, consistency, accuracy, and uniqueness
-   - Generates quality scores and detailed metrics
+### main.py
+- Sets up the group chat between agents
+- Manages the orchestration of the analysis workflow
+- Provides the main entry point for processing datasets
 
-3. **Statistical Analysis Agent**
-   - Performs descriptive statistics
-   - Analyzes distributions and correlations
+### system_messages.py
+- Defines the role and responsibilities of each agent
+- Contains system prompts for agent behavior
+- Establishes workflow protocols
 
-4. **Qualitative Analysis Agent**
-   - Analyzes data structure and relationships
-   - Handles categorical data analysis
-
-5. **Visualization Agent**
-   - Creates distribution plots
-   - Generates correlation heatmaps
-
-6. **Report Generation Agent**
-   - Compiles analyses into a structured PDF report
-   - Includes visualizations and metrics
+### utils.py
+- Implements core functionality for:
+  - Dataset downloading
+  - Quality assessment
+  - Statistical analysis
+  - Visualization generation
+  - Report creation
 
 ## Quality Assessment Metrics
 
-The quality assessment system evaluates four main aspects:
-
+The system evaluates datasets on four key dimensions:
 1. **Completeness** (25 points)
-   - Non-missing values ratio
-   - Complete records ratio
-   - Key field completeness
-   - Required field coverage
-
 2. **Consistency** (25 points)
-   - Format consistency
-   - Value range compliance
-   - Cross-field validation
-   - Temporal consistency
-
 3. **Accuracy** (25 points)
-   - Valid value percentage
-   - Outlier ratio
-   - Statistical distribution fitness
-   - Business rule compliance
-
 4. **Uniqueness** (25 points)
-   - Duplicate record ratio
-   - Unique constraint validation
-   - Primary key integrity
-   - Referential integrity
 
-## Output
-
-The pipeline generates:
-1. Quality assessment report (`quality_assessment.txt`)
-2. Analysis insights (`insights.txt`)
-3. Visualization files (PNG format)
-4. Comprehensive PDF report combining all analyses
+Total quality score is calculated out of 100 points.
 
 ## Error Handling
 
-The pipeline includes comprehensive error handling:
-- Each function includes try-catch blocks
-- Detailed error messages for debugging
-- Graceful termination on critical errors
+The system includes comprehensive error handling for:
+- Dataset download failures
+- File access issues
+- Data processing errors
+- Report generation problems
+
+Each function includes try-catch blocks with detailed error messages.
 
 ## Contributing
 
-Contributions are welcome! Please:
 1. Fork the repository
 2. Create a feature branch
-3. Submit a pull request
-
-## License
-
-[Add your license information here]
-
-## Contact
-
-[Add your contact information here]
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
